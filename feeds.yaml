@@ -17,7 +17,7 @@ categories:
       - title: "Cert FR - Actu"
         url: "https://www.cert.ssi.gouv.fr/actualite/feed/"
       - title: "CISA - Bulletin"
-        url: "https://www.cisa.gov/uscert/ncas/bulletins"
+        url: "https://www.cisa.gov/uscert/ncas/bulletins.xml"
 
   - name: "Vulnérabilités"
     sources:
