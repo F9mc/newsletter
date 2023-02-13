@@ -1,9 +1,25 @@
 categories:
-  - name: "Politiques"
+  - name: "IoC & CTI"
     sources:
-      - title: "Cert FR"
-        url: "https://www.cert.ssi.gouv.fr/feed"
-  - name: "Cyber"
-    sources: 
+      - title: "Cert FR - IoC"
+        url: "https://www.cert.ssi.gouv.fr/ioc/feed/"
+      - title: "Cert FR - CTI"
+        url: "https://www.cert.ssi.gouv.fr/cti/feed/"
       - title: "Bleeping Computer"
         url: "https://www.bleepingcomputer.com/feed/"
+      - title: "Cybersecurity news"
+        url: "https://cybersecuritynews.com/feed/"
+      - title: "CISA - CTI"
+        url: "https://www.cisa.gov/uscert/ncas/current-activity.xml"
+
+  - name: "Politique"
+    sources:
+      - title: "Cert FR - Actu"
+        url: "https://www.cert.ssi.gouv.fr/actualite/feed/"
+      - title: "CISA - Bulletin"
+        url: "https://www.cisa.gov/uscert/ncas/bulletins"
+
+  - name: "Vulnérabilités"
+    sources:
+      - title: "Cert FR - Vulns"
+        url: "https://www.cert.ssi.gouv.fr/alerte/feed/"

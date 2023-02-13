@@ -16,6 +16,10 @@ impl Section{
         }
     }
 
+    pub fn is_empty(&self) -> bool{
+        self.get_sources().len() == 0
+    }
+
     pub fn add_source(&mut self, source:Source) {
         self.sources.push(source.to_source());
     }
@@ -50,6 +54,11 @@ impl Source{
         }
     }
 
+    pub fn is_empty(&self) -> bool{
+        info!("LEN {:} {:}",self.name, self.posts.len());
+        self.get_posts().len() == 0
+    }
+
     pub fn build(name:String, posts:Vec<Post>) -> Source {
         Source{
             name:name,
@@ -77,7 +86,7 @@ impl Source{
         self.posts.push(post)
     }
 
-    pub async fn build_from_url(url:String) -> Source{
+    pub async fn build_from_url(url:String, name:String) -> Source{
         let content = reqwest::get(url)
         .await.unwrap()
         .bytes()
@@ -85,7 +94,7 @@ impl Source{
         let channel = Channel::read_from(&content[..]).unwrap();
         let last_posts:Vec<Post> = get_last_post_by_channel(&channel);
 
-        let source: Source = Source::build(channel.title, last_posts);
+        let source: Source = Source::build(name, last_posts);
     
         source
     }

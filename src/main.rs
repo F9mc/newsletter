@@ -24,7 +24,7 @@ async fn main() {
         for source in categorie.get_sources(){           
             debug!("Source {:}", source.get_name());
 
-            let source:Source = Source::build_from_url(source.get_url()).await;
+            let source:Source = Source::build_from_url(source.get_url(), source.get_name()).await;
             sections.add_source(source);
 
         }

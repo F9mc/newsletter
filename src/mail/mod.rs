@@ -74,31 +74,41 @@ pub mod email_function{
 }
 
 mod email_body{
+    #[allow(unused_imports)]
+    use log::{debug, warn, error, info};
     use build_html::*;
     use crate::custom_rss::{Section};
-
-
 
     pub fn build_mail_msg(posts:Vec<Section>) -> String {
         let mut html = HtmlPage::new();
 
         for section in posts{
-            let mut section_container = Container::new(ContainerType::Article);
-            section_container.add_header_attr(2, section.get_name(), [("class", "section-header")]);
+            if !section.is_empty(){
+                let mut section_container = Container::new(ContainerType::Article);
+                section_container.add_header_attr(2, section.get_name(), [("class", "section-header")]);
 
-            for source in section.get_sources() {
-                let mut source_container = Container::new(ContainerType::Article);
-                source_container.add_header_attr(3, source.get_name(), [("class", "source-header")]);
-                
-                for post in source.get_posts() {
-                    let mut post_container = Container::new(ContainerType::Article);
-                    post_container.add_link_attr(post.get_link(),post.get_title(), [("class", "post-header")]);
+                for source in section.get_sources() {
+                    if !source.is_empty(){
+                        let mut source_container = Container::new(ContainerType::Article);
+                        source_container.add_header_attr(3, source.get_name(), [("class", "source-header")]);
+                        
+                        for post in source.get_posts() {
+                            let mut post_container = Container::new(ContainerType::Article);
+                            post_container.add_link_attr(post.get_link(),post.get_title(), [("class", "post-header")]);
 
-                    source_container.add_container(post_container);
-                }
-                section_container.add_container(source_container);
+                            source_container.add_container(post_container);
+                        }
+                        section_container.add_container(source_container);
+                    }
+                    else{
+                        debug!("Source {:} is empty !", source.get_name());
+                    }
+                } 
+                html.add_container(section_container);
             }
-            html.add_container(section_container);
+            else{
+                debug!("Section {:} is empty !", section.get_name());
+            }
         }
 
 
