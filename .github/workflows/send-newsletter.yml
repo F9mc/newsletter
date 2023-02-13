@@ -1,6 +1,8 @@
 name: Send Newsletter
 
 on:
+  push:
+    branch: ['main']
   schedule:
   - cron: "27 * * * *"
 
