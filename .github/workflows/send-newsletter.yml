@@ -2,7 +2,7 @@ name: Send Newsletter
 
 on:
   shedule:
-    - cron 17 22 * * *
+    - cron: 18 22 * * *
 
 jobs:
   send_newsletter:
