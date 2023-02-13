@@ -1,10 +1,8 @@
 name: Send Newsletter
 
 on:
-  push:
-    branch: ['main']
   schedule:
-  - cron: "27 * * * *"
+  - cron: "0 7 * * *"
 
 jobs:
   send_newsletter:
@@ -14,6 +12,6 @@ jobs:
     - name: Add Env
       run: echo "${{ secrets.ENV_FILE }}" > .env
     - name: Add receiver
-      run: echo "${{ secrets.RECEIVERS }}" > src/assets/receiver.yaml
+      run: echo "${{ secrets.RECEIVERS }}" > receiver.yaml
     - name: Send
       run: cargo run

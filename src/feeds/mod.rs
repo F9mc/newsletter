@@ -7,14 +7,6 @@ pub struct Feeds{
 }
 
 impl Feeds{
-    pub fn get_categories_names(&self) -> Vec<String>{
-        let mut categories_string: Vec<String> = Vec::new();
-        for categorie in &self.categories{
-            categories_string.push(categorie.get_name());
-        }
-        categories_string
-    }
-
     pub fn get_categories(&self) -> Vec<Categorie>{
         let mut categories:Vec<Categorie> = Vec::new();
         for c in &self.categories{
@@ -92,7 +84,7 @@ impl Source{
 
 
 pub fn get_feeds() -> Feeds{
-    let file_path = "src/assets/feeds.yaml";
+    let file_path = "feeds.yaml";
     let file_data = fs::read_to_string(file_path).unwrap();
     let feeds:Feeds = serde_yaml::from_str(&file_data).unwrap();
     feeds

@@ -1,5 +1,5 @@
 
-pub mod EmailFunction{
+pub mod email_function{
     #[allow(unused_imports)]
     use log::{debug, warn, error, info};
     use std::{fs, env};
@@ -7,9 +7,9 @@ pub mod EmailFunction{
     use serde::{Serialize, Deserialize};
     use lettre::transport::smtp::authentication::Credentials;
     use lettre::{SmtpTransport, Transport};
-    use lettre::message::{header, Message, MultiPart, SinglePart};
+    use lettre::message::{Message, SinglePart};
     use crate::custom_rss::{Section};
-    use crate::mail::EmailBody::{build_mail_msg};
+    use crate::mail::email_body::{build_mail_msg};
     
     #[derive(Serialize, Deserialize, Debug, Clone)]
     struct Receivers{
@@ -27,7 +27,7 @@ pub mod EmailFunction{
     }
     
     fn get_receivers() -> Receivers{
-        let file_path = "src/assets/receiver.yaml";
+        let file_path = "receiver.yaml";
         let file_data = fs::read_to_string(file_path).unwrap();
         let receivers:Receivers = serde_yaml::from_str(&file_data).unwrap();
         debug!("Receivers : {:?}", receivers);
@@ -73,7 +73,7 @@ pub mod EmailFunction{
     }
 }
 
-mod EmailBody{
+mod email_body{
     use build_html::*;
     use crate::custom_rss::{Section};
 
