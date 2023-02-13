@@ -7,7 +7,7 @@ use log::{debug, warn, error, info};
 use dotenv::dotenv;
 use crate::feeds::{Feeds, get_feeds};
 use crate::custom_rss::{Source, Section};
-use crate::mail::{send_mail};
+use crate::mail::EmailFunction;
 
 
 #[tokio::main]
@@ -32,5 +32,5 @@ async fn main() {
         posts.push(sections);
     }
 
-    send_mail(posts);
+    EmailFunction::send_mail(posts);
 }

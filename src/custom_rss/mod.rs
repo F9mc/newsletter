@@ -17,7 +17,19 @@ impl Section{
     }
 
     pub fn add_source(&mut self, source:Source) {
-        self.sources.push(source);
+        self.sources.push(source.to_source());
+    }
+
+    pub fn get_sources(&self) -> Vec<Source> {
+        let mut sources:Vec<Source> = Vec::new();
+        for s in &self.sources{
+            sources.push(s.to_source());
+        }
+        sources
+    }
+
+    pub fn get_name(&self) -> String{
+        self.name.clone()
     }
 }
 
@@ -27,7 +39,11 @@ pub struct Source{
 }
 
 impl Source{
-    pub fn new(name:String) -> Source{
+    pub fn get_name(&self) -> String {
+        self.name.clone()
+    }
+
+    pub fn new(name:String) -> Source {
         Source{
             name:name,
             posts: Vec::new()
@@ -39,6 +55,26 @@ impl Source{
             name:name,
             posts:posts
         }
+    }
+
+    pub fn to_source(&self) -> Source{
+        let mut source = Source::new(self.name.clone());
+        for p in &self.posts{
+            source.add_post(p.to_post());
+        }
+        source
+    }
+
+    pub fn get_posts(&self) -> Vec<Post> {
+        let mut posts:Vec<Post> = Vec::new();
+        for p in &self.posts{
+            posts.push(p.to_post());
+        }
+        posts
+    }
+
+    pub fn add_post(&mut self, post:Post){
+        self.posts.push(post)
     }
 
     pub async fn build_from_url(url:String) -> Source{
@@ -66,6 +102,18 @@ impl Post{
             title:title,
             link:link
         }
+    }
+
+    pub fn get_title(&self) -> String {
+        self.title.clone()
+    }
+
+    pub fn get_link(&self) -> String {
+        self.link.clone()
+    }
+
+    pub fn to_post(&self) -> Post{
+        Post::new(self.title.clone(), self.link.clone())
     }
 }
 
