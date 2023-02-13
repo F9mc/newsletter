@@ -1,0 +1,15 @@
+name: Send Newsletter
+
+on:
+  shedule:
+    - cron 17 22 * * *
+
+jobs:
+  send_newsletter:
+    - uses: actions/checkout@v3
+    - name: Add Env
+      run: echo "${{ secrets.ENV_FILE }}" > .env
+    - name: Add receiver
+      run: echo "${{ secrets.RECEIVERS }}" > src/assets/receiver.yaml
+    - name: Send
+      run: cargo run

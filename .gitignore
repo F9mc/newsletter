@@ -14,3 +14,5 @@ Cargo.lock
 
 /target
 receiver.yaml
+.env
+.DS_Store
