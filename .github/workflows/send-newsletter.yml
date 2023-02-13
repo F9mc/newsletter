@@ -1,11 +1,13 @@
 name: Send Newsletter
 
 on:
-  shedule:
-    - cron: 18 22 * * *
+  schedule:
+    - cron: '22 22 * * *'
 
 jobs:
   send_newsletter:
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v3
     - name: Add Env
       run: echo "${{ secrets.ENV_FILE }}" > .env
