@@ -17,4 +17,5 @@ futures = "0.3.26"
 tokio = { version = "1.25.0", features = ["full"] }
 chrono = "0.4.23"
 build_html = "2.2.0"
+lettre = "0.10.2"
 
