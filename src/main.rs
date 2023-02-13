@@ -1,22 +1,36 @@
 mod feeds;
-use feeds::get_feeds;
-use crate::feeds::Feeds;
-use crate::feeds::Source;
+mod custom_rss;
+mod mail;
 
-use log::{debug, warn, error, info, Level};
-
+#[allow(unused_imports)]
+use log::{debug, warn, error, info};
 use dotenv::dotenv;
+use crate::feeds::{Feeds, get_feeds};
+use crate::custom_rss::{Source, Section};
+use crate::mail::{send_mail};
 
 
-fn main() {
+#[tokio::main]
+async fn main() {
     dotenv().ok();
     env_logger::init();
-    info!("Starting");
+
+    let mut posts:Vec<Section> = Vec::new();
+
     let feeds:Feeds = get_feeds();
     for categorie in feeds.get_categories(){
-        let categorie_name: String = categorie.get_name();
-        for source in categorie.get_sources(){
-            debug!("{categorie_name} - {:}", source.get_name());
+        let mut sections:Section = Section::new(categorie.get_name());
+        
+        for source in categorie.get_sources(){           
+            debug!("Source {:}", source.get_name());
+
+            let source:Source = Source::build_from_url(source.get_url()).await;
+            sections.add_source(source);
+
         }
+
+        posts.push(sections);
     }
+
+    send_mail(posts);
 }

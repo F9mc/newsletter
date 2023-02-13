@@ -6,3 +6,4 @@
 - [Rss](https://crates.io/crates/rss)
 - [Lettre](https://crates.io/crates/lettre)
 - [Log](https://crates.io/crates/log)
+- [Build-html](https://crates.io/crates/build_html)
