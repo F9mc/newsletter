@@ -1,0 +1,11 @@
+categories:
+  - name: "Politiques"
+    sources:
+      - title: "Cert FR"
+        url: "https://www.cert.ssi.gouv.fr/"
+  - name: "Cyber"
+    sources: 
+      - title: "Bleeping Computer"
+        url: "https://www.bleepingcomputer.com/"
+      - title: "Darl Readings"
+        url: "https://www.darkreading.com/"
