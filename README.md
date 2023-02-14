@@ -1,9 +1,57 @@
 # newsletter
+> Automated newsletter for rss feeds
 
-## Dépendencies
-- [Yaml](https://crates.io/crates/serde-yaml)
-- [Serde](https://crates.io/crates/serde)
-- [Rss](https://crates.io/crates/rss)
-- [Lettre](https://crates.io/crates/lettre)
-- [Log](https://crates.io/crates/log)
-- [Build-html](https://crates.io/crates/build_html)
+## How to use
+
+### Feeds
+Rss feeds are in [feeds/yaml](feeds.yaml).
+
+Feeds.yaml format:
+```yaml
+categories:
+  - name: "Cat 1"
+    sources:
+      - title: "Feed1"
+        url: "http://domain/feed"
+      - title: "Feed2"
+        url: "http://domain/feed"
+      - title: "Feed3"
+        url: "http://domain/feed"
+
+  - name: "Cat 2"
+    sources:
+      - title: "FeedA"
+        url: "http://domain/feed"
+      - title: "FeedB"
+        url: "http://domain/feed"
+
+```
+
+### Receiver
+
+All the receiver should be declared in [receiver.yaml](/) with the syntax:
+```yaml
+receivers:
+- receiver1@domain
+- receiver2@domain
+- receiver3@domain
+```
+
+### Env
+
+The following env variables should be set:
+```bash
+RUST_LOG=info #log level
+USERNAME= #sender email 
+PASSWORD= #sender password
+PUB_TIME=-N #Time before the last post in day
+```
+
+### Run
+Compile and run or run durectly with ```cargo run```
+
+
+## Result
+
+Exemple of result : 
+![Img result](assets/result.png)

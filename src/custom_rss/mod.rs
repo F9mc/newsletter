@@ -2,6 +2,7 @@
 use log::{debug, warn, error, info};
 use rss::{Channel};
 use chrono::{DateTime, Duration, Utc};
+use std::env;
 
 pub struct Section{
     name:String,
@@ -132,10 +133,14 @@ impl Post{
 
 fn get_last_post_by_channel(channel: &Channel) -> Vec<Post> {
     let mut results:Vec<Post> = Vec::new();
+    let env_time_ago = match env::var_os("PUB_TIME") {
+        Some(v) => v.into_string().unwrap(),
+        None => panic!("$PUB_TIME is not set")
+    };      
 
     for post in &channel.items{
         let date = DateTime::parse_from_rfc2822(post.pub_date().unwrap()).unwrap();
-        if Utc::now() + Duration::days(-1) < date{
+        if Utc::now() + Duration::days(env_time_ago.parse().unwrap()) < date{
             debug!("Find {} from {}", &post.title().unwrap(), &post.pub_date().unwrap());
 
             results.push(Post{
