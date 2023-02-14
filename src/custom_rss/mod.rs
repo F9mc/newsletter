@@ -17,7 +17,11 @@ impl Section{
     }
 
     pub fn is_empty(&self) -> bool{
-        self.get_sources().len() == 0
+        let mut result: bool = true;
+        for s in self.get_sources(){
+            result = result & s.is_empty();
+        }
+        result
     }
 
     pub fn add_source(&mut self, source:Source) {
@@ -55,7 +59,6 @@ impl Source{
     }
 
     pub fn is_empty(&self) -> bool{
-        info!("LEN {:} {:}",self.name, self.posts.len());
         self.get_posts().len() == 0
     }
 
