@@ -93,7 +93,7 @@ mod email_body{
 
         for section in posts{
             if !section.is_empty(){
-                let mut section_container = Container::new(ContainerType::Article);
+                let mut section_container = Container::new(ContainerType::Div);
                 section_container.add_header_attr(2, section.get_name(), [("class", "section-header")]);
 
                 for source in section.get_sources() {
