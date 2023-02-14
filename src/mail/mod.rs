@@ -77,10 +77,19 @@ mod email_body{
     #[allow(unused_imports)]
     use log::{debug, warn, error, info};
     use build_html::*;
+    use std::fs;
     use crate::custom_rss::{Section};
+
+
+    pub fn get_css() -> String {
+        let file_path = "src/mail/assets/main.css";
+        let file_data:String = fs::read_to_string(file_path).unwrap();
+        file_data
+    }
 
     pub fn build_mail_msg(posts:Vec<Section>) -> String {
         let mut html = HtmlPage::new();
+        let css:String = get_css();
 
         for section in posts{
             if !section.is_empty(){
@@ -94,7 +103,7 @@ mod email_body{
                         
                         for post in source.get_posts() {
                             let mut post_container = Container::new(ContainerType::Article);
-                            post_container.add_link_attr(post.get_link(),post.get_title(), [("class", "post-header")]);
+                            post_container.add_link_attr(post.get_link(), format!("> {:}",post.get_title()), [("class", "post-header")]);
 
                             source_container.add_container(post_container);
                         }
@@ -113,7 +122,7 @@ mod email_body{
 
 
 
-        
+    html.add_style(css);
     html.to_html_string()
     }
 }
