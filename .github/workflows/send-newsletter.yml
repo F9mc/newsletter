@@ -2,7 +2,7 @@ name: Send Newsletter
 
 on:
   schedule:
-  - cron: "0 7 * * *"
+  - cron: "0 0 * * *"
 
 jobs:
   send_newsletter:
