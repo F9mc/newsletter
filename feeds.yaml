@@ -1,16 +1,18 @@
 categories:
-  - name: "IoC & CTI"
+  - name: "CTI"
     sources:
       - title: "Cert FR - IoC"
         url: "https://www.cert.ssi.gouv.fr/ioc/feed/"
       - title: "Cert FR - CTI"
         url: "https://www.cert.ssi.gouv.fr/cti/feed/"
+      - title: "CISA - CTI"
+        url: "https://www.cisa.gov/uscert/ncas/current-activity.xml"
       - title: "Bleeping Computer"
         url: "https://www.bleepingcomputer.com/feed/"
       - title: "Cybersecurity news"
         url: "https://cybersecuritynews.com/feed/"
-      - title: "CISA - CTI"
-        url: "https://www.cisa.gov/uscert/ncas/current-activity.xml"
+      - title: "The Hacker News"
+        url: "https://feeds.feedburner.com/TheHackersNews"
 
   - name: "Politique"
     sources:
@@ -18,8 +20,14 @@ categories:
         url: "https://www.cert.ssi.gouv.fr/actualite/feed/"
       - title: "CISA - Bulletin"
         url: "https://www.cisa.gov/uscert/ncas/bulletins.xml"
+      - title: "CISA - Alerte"
+        url: "https://www.cisa.gov/uscert/ncas/alerts.xml"
 
   - name: "Vulnérabilités"
     sources:
       - title: "Cert FR - Vulns"
         url: "https://www.cert.ssi.gouv.fr/alerte/feed/"
+      - title: "Packet Storm"
+        url: "https://rss.packetstormsecurity.com/files/"
+      - title: "MS-IAC"
+        url: "https://www.cisecurity.org/feed/advisories"
