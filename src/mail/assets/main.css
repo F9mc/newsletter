@@ -1,1 +1,33 @@
-html{font-family: "Rubik", sans-serif;font-size: 100%;background-color: white;color: hsl(20 3% 19%)}body{block-size: 100%;padding-left: 2rem}div{padding-bottom: 3rem}h2,h3{align-self: center;font-size: 1rem;font-weight: bold;display: grid;color: hsl(20 3% 19%)}h2{text-transform: uppercase}a{color: hsl(20 3% 19%);text-decoration: none}
+html {
+    font-family: "Rubik", sans-serif;
+    font-size: 100%;
+    background-color: white;
+    color: hsl(20 3% 19%);
+  }
+body {
+    block-size: 100%;
+    padding-left: 2rem;
+  }
+div {
+    padding-bottom: 1.5rem;
+  }
+.section-header,.source-header {
+    align-self: center;
+    font-size: 1rem;
+    font-weight: bold;
+    display: grid;
+    color: hsl(20 3% 19%);
+  }
+.section-header {
+    text-transform: uppercase;
+}
+
+.source-header{
+
+}
+
+.post-title {
+    color: hsl(20 3% 19%);
+    text-decoration: none;
+  }
+  

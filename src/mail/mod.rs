@@ -103,7 +103,7 @@ mod email_body{
                         
                         for post in source.get_posts() {
                             let mut post_container = Container::new(ContainerType::Article);
-                            post_container.add_link_attr(post.get_link(), format!("> {:}",post.get_title()), [("class", "post-header")]);
+                            post_container.add_link_attr(post.get_link(), format!("> {:}",post.get_title()), [("class", "post-title")]);
 
                             source_container.add_container(post_container);
                         }
