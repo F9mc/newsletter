@@ -58,7 +58,7 @@ Exemple of result :
 
 ## My usage 
 I use this script with sheduled github action, to receive everyday my cybersecurity-watch :
-```
+```yaml
 name: Send Newsletter
 
 on:
