@@ -65,10 +65,6 @@ on:
   schedule:
   - cron: "0 6 * * *"
 
-env:
-  PUB_TIME: -1
-  RUST_LOG: "error"
-
 jobs:
   ...
 ```
