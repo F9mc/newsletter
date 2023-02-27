@@ -153,7 +153,7 @@ fn get_last_post_by_channel(channel: &Channel) -> Vec<Post> {
                             });
                         }
                     },
-                    Err(E) => error!("Date could not be parsed")
+                    Err(_) => error!("Date could not be parsed")
                 }
                 
             },
