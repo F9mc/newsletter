@@ -139,15 +139,31 @@ fn get_last_post_by_channel(channel: &Channel) -> Vec<Post> {
     };      
 
     for post in &channel.items{
-        let date = DateTime::parse_from_rfc2822(post.pub_date().unwrap()).unwrap();
-        if Utc::now() + Duration::days(env_time_ago.parse().unwrap()) < date{
-            debug!("Find {} from {}", &post.title().unwrap(), &post.pub_date().unwrap());
 
-            results.push(Post{
-                title:post.title.as_ref().unwrap().to_string(),
-                link:post.link.as_ref().unwrap().to_string()
-            });
+        match post.pub_date() {
+            Some(parsed_date) => {
+                match DateTime::parse_from_rfc2822(parsed_date){
+                    Ok(date) => {
+                        if Utc::now() + Duration::days(env_time_ago.parse().unwrap()) < date{
+                            debug!("Find {} from {}", &post.title().unwrap(), &post.pub_date().unwrap());
+                
+                            results.push(Post{
+                                title:post.title.as_ref().unwrap().to_string(),
+                                link:post.link.as_ref().unwrap().to_string()
+                            });
+                        }
+                    },
+                    Err(E) => error!("Date could not be parsed")
+                }
+                
+            },
+            None => {
+                error!("Date not found")
+            }
+
         }
+
+
     }
     results
 }
