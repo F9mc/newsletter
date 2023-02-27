@@ -55,3 +55,16 @@ Compile and run or run durectly with ```cargo run```
 
 Exemple of result : 
 ![Img result](assets/result.png)
+
+## My usage 
+I use this script with sheduled github action, to receive everyday my cybersecurity-watch :
+```yaml
+name: Send Newsletter
+
+on:
+  schedule:
+  - cron: "0 6 * * *"
+
+jobs:
+  ...
+```
