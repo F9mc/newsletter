@@ -52,7 +52,7 @@ pub mod email_function{
             debug!("Sending to {:#?}", receiver);
             let email = Message::builder()
             .from(username.parse().unwrap())
-            .to("newsletter@pcabon.com".parse().unwrap())
+            .to(receiver.parse().unwrap())
             .subject(format!("Newsletter {:}", Utc::now().format("%d/%m/%Y")))
             .singlepart(SinglePart::html(body.clone())).unwrap();
             
